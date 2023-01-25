@@ -32,7 +32,12 @@ const Tile: FC<{
         )}
         onClick={() => {
           if (hasQueen) {
-            setSelectedTile([j, k]);
+            setSelectedTile((prev) => {
+              if (prev.length === 2 && prev[0] === j && prev[1] === k) {
+                return [];
+              }
+              return [j, k];
+            });
             return;
           }
 

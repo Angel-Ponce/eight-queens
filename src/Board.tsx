@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import Tile from "./Tile";
 
 const Board: FC<{
@@ -47,6 +47,10 @@ const Board: FC<{
 
     return false;
   };
+
+  useEffect(() => {
+    setSelectedTile([]);
+  }, [solution]);
 
   return (
     <div className="overflow-auto w-full flex justify-center">

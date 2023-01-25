@@ -25,7 +25,10 @@ const App: FC = () => {
 
   return (
     <div className="w-screen h-screen flex flex-col gap-10 items-center justify-center p-6">
-      <h1 className="text-4xl">Solución #{index + 1}</h1>
+      <div className="flex flex-col items-center justify-center">
+        <h1 className="text-3xl">Solución #{index + 1}</h1>
+        <p>Angel Ponce - 201940152</p>
+      </div>
       <Board solution={solutions[index]} />
       <div className="flex gap-5">
         <button
