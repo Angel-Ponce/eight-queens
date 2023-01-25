@@ -1,13 +1,15 @@
 import clsx from "clsx";
 import { motion } from "framer-motion";
-import { FC } from "react";
+import { FC, Dispatch, SetStateAction } from "react";
 import queen from "./assets/queen.svg";
 
-const Tile: FC<{ j: number; k: number; hasQueen: boolean }> = ({
-  j,
-  k,
-  hasQueen,
-}) => {
+const Tile: FC<{
+  j: number;
+  k: number;
+  hasQueen: boolean;
+  setSelectedTile: Dispatch<SetStateAction<number[]>>;
+  isDangerous: boolean;
+}> = ({ j, k, hasQueen, setSelectedTile, isDangerous }) => {
   return (
     <motion.div
       initial={{
@@ -22,11 +24,20 @@ const Tile: FC<{ j: number; k: number; hasQueen: boolean }> = ({
     >
       <div
         className={clsx(
-          "relative min-w-[56px] min-h-[56px] w-14 h-14 border flex justify-center items-center",
+          "relative min-w-[56px] min-h-[56px] w-14 h-14 border flex justify-center items-center cursor-pointer select-none transition-colors duration-150",
           j % 2 === 0
             ? k % 2 === 0 && "bg-gray-200"
-            : k % 2 !== 0 && "bg-gray-200"
+            : k % 2 !== 0 && "bg-gray-200",
+          isDangerous && "!bg-red-200"
         )}
+        onClick={() => {
+          if (hasQueen) {
+            setSelectedTile([j, k]);
+            return;
+          }
+
+          setSelectedTile([]);
+        }}
       >
         <span className="w-5 h-5">
           {hasQueen && (
