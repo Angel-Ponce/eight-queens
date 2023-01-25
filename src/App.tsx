@@ -1,5 +1,6 @@
 import { FC, useEffect, useState } from "react";
 import { nqueens } from "$helpers";
+import Board from "./Board";
 
 const App: FC = () => {
   const [solutions, setSolutions] = useState<number[][][]>([]);
@@ -29,7 +30,7 @@ const App: FC = () => {
   return (
     <div className="w-full h-screen flex flex-col gap-10 items-center justify-center p-6">
       <h1 className="text-4xl">Solución #{index + 1}</h1>
-      <h1 className="text-4xl">{JSON.stringify(solutions[index])}</h1>
+      <Board solution={solutions[index]} />
       <div className="flex gap-5">
         <button
           onClick={handlePrevious}
