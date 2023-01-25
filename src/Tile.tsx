@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import { FC } from "react";
+import queen from "./assets/queen.svg";
 
 const Tile: FC<{ j: number; k: number; hasQueen: boolean }> = ({
   j,
@@ -15,7 +16,9 @@ const Tile: FC<{ j: number; k: number; hasQueen: boolean }> = ({
           : k % 2 !== 0 && "bg-gray-200"
       )}
     >
-      {hasQueen && "***"}
+      <span className="w-5 h-5">
+        {hasQueen && <img src={queen} alt="queen" />}
+      </span>
       <span className="absolute top-0 right-0 text-[8px] text-gray-500">
         {j},{k}
       </span>

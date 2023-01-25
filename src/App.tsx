@@ -1,9 +1,9 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import { nqueens } from "$helpers";
 import Board from "./Board";
 
 const App: FC = () => {
-  const [solutions, setSolutions] = useState<number[][][]>([]);
+  const [solutions] = useState<number[][][]>(nqueens());
   const [index, setIndex] = useState<number>(0);
 
   const handlePrevious = () => {
@@ -22,10 +22,6 @@ const App: FC = () => {
 
     setIndex((index) => index + 1);
   };
-
-  useEffect(() => {
-    setSolutions(nqueens());
-  }, []);
 
   return (
     <div className="w-screen h-screen flex flex-col gap-10 items-center justify-center p-6">
